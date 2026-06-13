@@ -1,87 +1,144 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/')({ component: App })
+export const Route = createFileRoute('/')({
+  component: Home,
+})
 
-function App() {
+const reviews = [
+  {
+    name: 'Katherine Nix',
+    stars: 5,
+    text: 'Our hot water heater went out and we hired Wilsonville HVAC Pros to replace it. They also recommended we upgrade our furnace — so glad we did. This winter has been very cold and the new furnace is doing a great job. Highly recommend.',
+  },
+  {
+    name: 'Ruby Bennett',
+    stars: 5,
+    text: 'Our furnace died a few days ago with winter setting in and temperatures dropping fast. Their pricing and availability met our needs perfectly. Couldn\'t be happier with how quickly they came out.',
+  },
+  {
+    name: 'Richard Blake',
+    stars: 5,
+    text: 'I had a great experience purchasing a new furnace. The price was very reasonable and there was no hard sell. I worked with Jack to get an estimate — he answered all my questions clearly and thoroughly.',
+  },
+]
+
+export default function Home() {
   return (
-    <main className="page-wrap px-4 pb-8 pt-14">
-      <section className="island-shell rise-in relative overflow-hidden rounded-[2rem] px-6 py-10 sm:px-10 sm:py-14">
-        <div className="pointer-events-none absolute -left-20 -top-24 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(79,184,178,0.32),transparent_66%)]" />
-        <div className="pointer-events-none absolute -bottom-20 -right-20 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(47,106,74,0.18),transparent_66%)]" />
-        <p className="island-kicker mb-3">TanStack Start Base Template</p>
-        <h1 className="display-title mb-5 max-w-3xl text-4xl leading-[1.02] font-bold tracking-tight text-[var(--sea-ink)] sm:text-6xl">
-          Start simple, ship quickly.
-        </h1>
-        <p className="mb-8 max-w-2xl text-base text-[var(--sea-ink-soft)] sm:text-lg">
-          This base starter intentionally keeps things light: two routes, clean
-          structure, and the essentials you need to build from scratch.
-        </p>
-        <div className="flex flex-wrap gap-3">
-          <a
-            href="/about"
-            className="rounded-full border border-[rgba(50,143,151,0.3)] bg-[rgba(79,184,178,0.14)] px-5 py-2.5 text-sm font-semibold text-[var(--lagoon-deep)] no-underline transition hover:-translate-y-0.5 hover:bg-[rgba(79,184,178,0.24)]"
-          >
-            About This Starter
-          </a>
-          <a
-            href="https://tanstack.com/router"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full border border-[rgba(23,58,64,0.2)] bg-white/50 px-5 py-2.5 text-sm font-semibold text-[var(--sea-ink)] no-underline transition hover:-translate-y-0.5 hover:border-[rgba(23,58,64,0.35)]"
-          >
-            Router Guide
-          </a>
+    <>
+      {/* Hero */}
+      <section className="hero">
+        <div className="container hero-inner">
+          <div className="hero-text">
+            <div className="trust-badges">
+              <span className="trust-badge">🎖 Veteran-Owned</span>
+              <span className="trust-badge">♀ Women-Owned</span>
+            </div>
+            <h1>Wilsonville's HVAC experts, day or night.</h1>
+            <p className="hero-sub">
+              Furnace repair, AC installation, water heaters, and more — for homes and businesses across Wilsonville and the greater Portland metro. Available 24/7, including emergencies.
+            </p>
+            <div className="hero-actions">
+              <a href="tel:5036789214" className="btn-primary">Call (503) 678-9214</a>
+              <Link to="/services" className="btn-outline">Our Services</Link>
+            </div>
+            <div className="hero-meta">
+              <span className="stars">★★★★★</span>
+              <span>5.0 · 6 reviews on Google</span>
+              <span className="dot">·</span>
+              <span>Open 24/7</span>
+            </div>
+          </div>
+          <div className="hero-card">
+            <div className="contact-card-hero">
+              <div className="emergency-banner">🚨 24/7 Emergency Service</div>
+              <h3>Call or Schedule</h3>
+              <a href="tel:5036789214" className="btn-primary full-width call-big">(503) 678-9214</a>
+              <div className="hours-divider" />
+              <table className="hours-table">
+                <tbody>
+                  <tr><td>Monday – Sunday</td><td>Open 24 Hours</td></tr>
+                  <tr><td>Emergency calls</td><td>Always available</td></tr>
+                </tbody>
+              </table>
+              <div className="hours-divider" />
+              <p className="service-area-note">📍 Serving Wilsonville, OR and surrounding communities</p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {[
-          [
-            'Type-Safe Routing',
-            'Routes and links stay in sync across every page.',
-          ],
-          [
-            'Server Functions',
-            'Call server code from your UI without creating API boilerplate.',
-          ],
-          [
-            'Streaming by Default',
-            'Ship progressively rendered responses for faster experiences.',
-          ],
-          [
-            'Tailwind Native',
-            'Design quickly with utility-first styling and reusable tokens.',
-          ],
-        ].map(([title, desc], index) => (
-          <article
-            key={title}
-            className="island-shell feature-card rise-in rounded-2xl p-5"
-            style={{ animationDelay: `${index * 90 + 80}ms` }}
-          >
-            <h2 className="mb-2 text-base font-semibold text-[var(--sea-ink)]">
-              {title}
-            </h2>
-            <p className="m-0 text-sm text-[var(--sea-ink-soft)]">{desc}</p>
-          </article>
-        ))}
+      {/* Why us strip */}
+      <section className="why-strip">
+        <div className="container why-grid">
+          {[
+            { icon: '⚡', label: 'Fast Response', desc: 'Same-day and emergency service available around the clock' },
+            { icon: '💰', label: 'Fair Pricing', desc: 'Transparent quotes, no hard sell — just honest recommendations' },
+            { icon: '🏠', label: 'Residential & Commercial', desc: 'We work with homes and businesses of all sizes' },
+            { icon: '📅', label: 'Since 2011', desc: 'Over a decade of trusted HVAC service in the Wilsonville area' },
+          ].map((w) => (
+            <div key={w.label} className="why-item">
+              <span className="why-icon">{w.icon}</span>
+              <strong>{w.label}</strong>
+              <p>{w.desc}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
-      <section className="island-shell mt-8 rounded-2xl p-6">
-        <p className="island-kicker mb-2">Quick Start</p>
-        <ul className="m-0 list-disc space-y-2 pl-5 text-sm text-[var(--sea-ink-soft)]">
-          <li>
-            Edit <code>src/routes/index.tsx</code> to customize the home page.
-          </li>
-          <li>
-            Update <code>src/components/Header.tsx</code> and{' '}
-            <code>src/components/Footer.tsx</code> for brand links.
-          </li>
-          <li>
-            Add routes in <code>src/routes</code> and tweak visual tokens in{' '}
-            <code>src/styles.css</code>.
-          </li>
-        </ul>
+      {/* Services snapshot */}
+      <section className="services-snap section">
+        <div className="container">
+          <p className="section-label">What we do</p>
+          <h2>Heating, cooling, and everything in between</h2>
+          <div className="service-grid">
+            {[
+              { icon: '🔥', title: 'Furnace Repair & Installation', desc: 'Diagnose and fix furnace failures fast, or install a new high-efficiency unit.' },
+              { icon: '❄️', title: 'Air Conditioning', desc: 'AC repair, replacement, and new installations for home and commercial comfort.' },
+              { icon: '💧', title: 'Water Heater Services', desc: 'Hot water heater replacement and repair — traditional and tankless systems.' },
+              { icon: '🌡', title: 'Heat Pumps', desc: 'Year-round comfort with energy-efficient heat pump installation and service.' },
+              { icon: '🔧', title: 'HVAC Maintenance', desc: 'Seasonal tune-ups and inspections to keep your system running at peak efficiency.' },
+              { icon: '🏢', title: 'Commercial HVAC', desc: 'Full-service HVAC solutions for commercial properties of all sizes.' },
+            ].map((s) => (
+              <div key={s.title} className="service-card">
+                <span className="service-icon">{s.icon}</span>
+                <h3>{s.title}</h3>
+                <p>{s.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
+            <Link to="/services" className="btn-outline">See full service list</Link>
+          </div>
+        </div>
       </section>
-    </main>
+
+      {/* Reviews */}
+      <section className="reviews-section section">
+        <div className="container">
+          <p className="section-label">What people say</p>
+          <h2>5.0 stars from our Wilsonville customers</h2>
+          <div className="review-grid">
+            {reviews.map((r) => (
+              <div key={r.name} className="review-card">
+                <div className="review-stars">{'★'.repeat(r.stars)}</div>
+                <p className="review-text">"{r.text}"</p>
+                <p className="review-name">— {r.name}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA strip */}
+      <section className="cta-strip">
+        <div className="container cta-inner">
+          <div>
+            <h2>Heating or cooling problem? We're ready now.</h2>
+            <p>Available 24/7 for emergency repairs and new installations across Wilsonville, OR.</p>
+          </div>
+          <a href="tel:5036789214" className="btn-primary btn-large">Call (503) 678-9214</a>
+        </div>
+      </section>
+    </>
   )
 }
